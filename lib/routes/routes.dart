@@ -15,10 +15,22 @@ class MyRoutes {
         return MaterialPageRoute(builder: (context) => Screen2());
     }
 
-    return MaterialPageRoute(builder: (context) {
-      return Scaffold(
-        body: Center(child: Text('Page Routing Error')),
-      );
-    });
+    return MaterialPageRoute(
+      builder: (context) {
+        return Scaffold(
+            body: AlertDialog(
+          title: Text('Are you sure want to exit'),
+          actions: [
+            TextButton(
+              onPressed: () {
+               MaterialPageRoute(builder: (context) => Screen1());
+              
+              },
+              child: Text('Go Back',style: TextStyle(color: Colors.green),),
+            ),
+          ],
+        ));
+      },
+    );
   }
 }

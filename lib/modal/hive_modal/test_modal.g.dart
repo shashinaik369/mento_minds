@@ -1,38 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'localNotes_model.dart';
+part of 'test_modal.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class LocalNoteModelAdapter extends TypeAdapter<LocalNoteModel> {
+class TestModalAdapter extends TypeAdapter<TestModal> {
   @override
-  final int typeId = 1;
+  final int typeId = 0;
 
   @override
-  LocalNoteModel read(BinaryReader reader) {
+  TestModal read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return LocalNoteModel(
-      title: fields[0] as String?,
-      isComplete: fields[2] as bool?,
-      created: fields[5] as DateTime?,
+    return TestModal(
+      title: fields[0] as String,
+      time: fields[1] as DateTime,
     );
   }
 
   @override
-  void write(BinaryWriter writer, LocalNoteModel obj) {
+  void write(BinaryWriter writer, TestModal obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(2)
       ..writeByte(0)
       ..write(obj.title)
-      ..writeByte(2)
-      ..write(obj.isComplete)
-      ..writeByte(5)
-      ..write(obj.created);
+      ..writeByte(1)
+      ..write(obj.time);
   }
 
   @override
@@ -41,7 +38,7 @@ class LocalNoteModelAdapter extends TypeAdapter<LocalNoteModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is LocalNoteModelAdapter &&
+      other is TestModalAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

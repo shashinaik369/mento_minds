@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mento_mind_assignment/blocs/Notes/notes_bloc.dart';
+
 import 'package:mento_mind_assignment/blocs/data_bloc/data_bloc.dart';
+import 'package:mento_mind_assignment/blocs/tests_bloc/test_bloc.dart';
 import 'package:mento_mind_assignment/constants.dart';
 import 'package:mento_mind_assignment/modal/concepts_model.dart';
+import 'package:mento_mind_assignment/modal/hive_modal/test_modal.dart';
 import 'package:mento_mind_assignment/modal/test_modal.dart';
 import 'package:mento_mind_assignment/repository/test_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +36,6 @@ class _Screen2State extends State<Screen2> {
 
   @override
   Widget build(BuildContext context) {
-    final noteBloc = BlocProvider.of<NotesBloc>(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -198,11 +199,9 @@ class _Screen2State extends State<Screen2> {
               CreateButton(
                 onTap: () {
                   if (testNameController.text.trim().isNotEmpty) {
-                    noteBloc.add(AddNoteFrave(
-                      title: testNameController.text,
-                      created: DateTime.now(),
-                      isComplete: false,
-                    ));
+                    TestModal test = TestModal(
+                        title: testNameController.text, time: DateTime.now());
+                    context.read<TestBloc>().add(TestAddEvent(test));
                     clearText();
                     Navigator.pop(context);
                   } else {
@@ -217,9 +216,6 @@ class _Screen2State extends State<Screen2> {
     );
   }
 }
-
-
-
 
 class CreateButton extends StatelessWidget {
   VoidCallback onTap;
